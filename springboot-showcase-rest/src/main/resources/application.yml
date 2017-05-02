@@ -1,0 +1,7 @@
+server:
+  port: 9999
+#  contextPath: /demo      #设置 webapp 名称
+
+dubbo:
+  registry:
+    address: localhost:2181
