@@ -1,22 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.com.git.udmp.showcase</groupId>
-  <artifactId>springboot-showcase-parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.com.git.udmp.showcase</groupId>
+	<artifactId>springboot-showcase-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
 		<spring-boot-version>1.4.0.RELEASE</spring-boot-version>
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<servlet-api.version>3.0.1</servlet-api.version>
 		<validator.version>5.1.1.Final</validator.version>
 		<docker.image.prefix>10.210.33.58:8445</docker.image.prefix>
 		<jdk.version>1.8</jdk.version>
-  </properties>
-  
-  <dependencyManagement>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>nexus-repos</id>
+			<name>Team Nexus Repository</name>
+			<url>http://127.0.0.1:8990/repository/maven-public/</url>
+		</repository>
+	</repositories>
+	<!-- 设定插件仓库 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus-repos</id>
+			<name>Team Nexus Repository</name>
+			<url>http://127.0.0.1:8990/repository/maven-public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencyManagement>
 		<dependencies>
-            <dependency>
+			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
 				<version>Fowler-SR2</version>
@@ -55,7 +72,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,7 +89,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://127.0.0.1:8990/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://127.0.0.1:8990/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -92,8 +122,8 @@
 						</execution>
 					</executions>
 				</plugin>
-				
-				<!--  Compiler 插件, 设定JDK版本  -->
+
+				<!-- Compiler 插件, 设定JDK版本 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -104,7 +134,7 @@
 						<showWarnings>true</showWarnings>
 					</configuration>
 				</plugin>
-				
+
 				<plugin>
 					<groupId>com.spotify</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
