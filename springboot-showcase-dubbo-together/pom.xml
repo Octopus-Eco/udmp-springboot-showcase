@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.com.git.udmp.showcase</groupId>
+    <artifactId>springboot-showcase-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <groupId>cn.com.git.udmp.showcase</groupId>
+  <artifactId>springboot-showcase-dubbo-together</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+  	<springboot.showcase.version>0.0.1-SNAPSHOT</springboot.showcase.version>
+  </properties>
+  
+  <dependencies>
+		<dependency>
+			<groupId>cn.com.git.udmp.showcase</groupId>
+			<artifactId>springboot-showcase</artifactId>
+			<version>${springboot.showcase.version}</version>
+		</dependency>
+  </dependencies>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+		    <groupId>io.dubbo.springboot</groupId>
+		    <artifactId>spring-boot-starter-dubbo</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  
+  <build>
+  	<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>1.4.0.RELEASE</version>
+					<configuration>
+						<mainClass>cn.com.git.udmp.showcase.ShowcaseApplication</mainClass>
+						<layout>JAR</layout>
+						<!-- <addResources>true</addResources> -->
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+  
+  <modules>
+  	<module>dubbo-together-interface</module>
+  	<module>dubbo-together-service</module>
+  	<module>dubbo-together-client</module>
+  </modules>
+</project>
