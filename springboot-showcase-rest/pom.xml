@@ -15,6 +15,31 @@
   	<springboot.showcase.version>0.0.1-SNAPSHOT</springboot.showcase.version>
   </properties>
   
+  <profiles>
+  	<profile>
+  		<id>dev</id>
+  		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+  		<properties>
+  			<run.port>9999</run.port>
+  			<zk.addr>localhost:2181</zk.addr>
+  		</properties>
+  	</profile>
+  	
+  	<profile>
+  		<id>pdt</id>
+  		<activation>
+			<activeByDefault>false</activeByDefault>
+		</activation>
+  		<properties>
+  			<run.port>8080</run.port>
+  			<zk.addr>10.220.133.45:2181</zk.addr>
+  		</properties>
+  	</profile>
+  	
+  </profiles>
+  
   <dependencies>
 		<dependency>
 			<groupId>cn.com.git.udmp.showcase</groupId>
